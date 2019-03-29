@@ -75,7 +75,7 @@ class QuadTree:
         self.northwest = QuadTree(Rectangle(x, y, w / 2, h / 2), self.limit)
         self.northeast = QuadTree(Rectangle(x + w / 2, y, w / 2, h / 2), self.limit)
         self.southwest = QuadTree(Rectangle(x, y + h / 2, w / 2, h / 2), self.limit)
-        self.southeast = QuadTree(Rectangle(x + w / 2, y + h / 2, w / 2, h // 2), self.limit)
+        self.southeast = QuadTree(Rectangle(x + w / 2, y + h / 2, w / 2, h / 2), self.limit)
         self.divided = True
 
 
@@ -106,11 +106,11 @@ class QuadTree:
         for p in self.points:    
             if self.northwest.boundary.contains(p):    
                 self.northwest.points.append(p)    
-            if self.northeast.boundary.contains(p):    
+            elif self.northeast.boundary.contains(p):    
                 self.northeast.points.append(p)    
-            if self.southeast.boundary.contains(p):    
+            elif self.southeast.boundary.contains(p):    
                 self.southeast.points.append(p)    
-            if self.southwest.boundary.contains(p):    
+            elif self.southwest.boundary.contains(p):    
                 self.southwest.points.append(p)
             
     def show(self):
@@ -124,16 +124,16 @@ class QuadTree:
             self.southwest.show()
             self.southeast.show()
         
-        for p in self.points:
-            strokeWeight(5)
-            point(p.x, p.y)
+        # for p in self.points:
+        #     strokeWeight(5)
+        #     point(p.x, p.y)
             
         
 def setup():
     global qtree
     size(802, 802)
     
-    qtree = QuadTree(Rectangle(0, 0, width, height), 4)
+    qtree = QuadTree(Rectangle(0, 0, width, height), 1)
     
     for i in range(500):
         p = Point(random(width), random(height))
@@ -145,9 +145,9 @@ def draw():
     background(0)
     
     qtree.show()
-    
+
     stroke(0, 255, 0)
-    
+    strokeWeight(3)
     choice = 1
     
     found = []
