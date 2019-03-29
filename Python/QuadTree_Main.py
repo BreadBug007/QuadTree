@@ -4,7 +4,7 @@ import QuadTree_Class as qt
 
 py.init()
 
-width, height = 600, 600
+width, height = 1005, 705
 
 screen = py.display.set_mode((width, height))
 
@@ -21,16 +21,10 @@ for i in range(500):
 
 
 while True:
-    for event in py.event.get():
-        if event.type == py.QUIT:
-            py.quit()
-
     q_tree.show(screen)
 
     choice = 1
-
     found = []
-
     mouse_x, mouse_y = py.mouse.get_pos()
 
     if choice == 0:
@@ -43,7 +37,13 @@ while True:
         points = q_tree.query(q_range, found)
 
     for p in points:
-        py.draw.circle(screen, green, (p.x, p.y), 3)
+        py.draw.circle(screen, green, (p.x, p.y), 2)
     py.display.update()
 
     screen.fill(black)
+
+    for event in py.event.get():
+        if event.type == py.QUIT:
+            py.quit()
+        if event.type == py.KEYDOWN and event.key == py.K_ESCAPE:
+            py.quit()

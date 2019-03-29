@@ -59,11 +59,11 @@ class QuadTree:
                 self.assign_points()
             if self.northwest.insert(point):
                 return True
-            if self.northeast.insert(point):
+            elif self.northeast.insert(point):
                 return True
-            if self.southwest.insert(point):
+            elif self.southwest.insert(point):
                 return True
-            if self.southeast.insert(point):
+            elif self.southeast.insert(point):
                 return True
 
     def subdivide(self):
@@ -82,11 +82,11 @@ class QuadTree:
         for p in self.points:
             if self.northwest.boundary.contains(p):
                 self.northwest.points.append(p)
-            if self.northeast.boundary.contains(p):
+            elif self.northeast.boundary.contains(p):
                 self.northeast.points.append(p)
-            if self.southeast.boundary.contains(p):
+            elif self.southeast.boundary.contains(p):
                 self.southeast.points.append(p)
-            if self.southwest.boundary.contains(p):
+            elif self.southwest.boundary.contains(p):
                 self.southwest.points.append(p)
 
     def query(self, q_range, found):
@@ -121,5 +121,5 @@ class QuadTree:
             self.southwest.show(screen)
             self.southeast.show(screen)
 
-        for p in self.points:
-            py.draw.circle(screen, (255, 255, 255), (p.x, p.y), 2)
+        # for p in self.points:
+        #     py.draw.circle(screen, (255, 255, 255), (p.x, p.y), 2)
